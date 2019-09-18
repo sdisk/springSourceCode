@@ -25,4 +25,15 @@ public class UserBeanTest {
 		logger.info("class: {}", userBean.getClass());
 		Assert.assertEquals("username", userBean.getName());
 	}
+
+	@Test
+	public void testCar(){
+		BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("spring/spring-test.xml"));
+		Car car =  (Car) beanFactory.getBean("car");
+		//获取实例
+		Object car2 =  beanFactory.getBean("&car");
+		logger.info("name: {}" , car.getBrand());
+		logger.info("class: {}", car.getClass());
+		logger.info("car2: {}", car2.toString());
+	}
 }

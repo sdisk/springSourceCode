@@ -5,4 +5,7 @@
                             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="myUserBean" class="com.hq.bean.UserBean"/>
+	<bean id="car" class="com.hq.bean.CarFactoryBean">
+		<property name="carInfo" value="法拉利,400,2000000"></property>
+	</bean>
 </beans>

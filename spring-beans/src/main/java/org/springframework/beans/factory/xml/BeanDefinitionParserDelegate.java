@@ -472,17 +472,22 @@ public class BeanDefinitionParserDelegate {
 		this.parseState.push(new BeanEntry(beanName));
 
 		String className = null;
+		//解析class属性
 		if (ele.hasAttribute(CLASS_ATTRIBUTE)) {
 			className = ele.getAttribute(CLASS_ATTRIBUTE).trim();
 		}
 		String parent = null;
+		//解析parent属性
 		if (ele.hasAttribute(PARENT_ATTRIBUTE)) {
 			parent = ele.getAttribute(PARENT_ATTRIBUTE);
 		}
 
 		try {
+			//创建用于承载属性的GenericBeanDefinition
+			//BeanDefinitionReaderUtils  GenericBeanDefinition bd = new GenericBeanDefinition();
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 
+			//硬编码解析默认bean的各种属性
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 
