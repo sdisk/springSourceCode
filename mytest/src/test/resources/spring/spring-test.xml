@@ -8,4 +8,13 @@
 	<bean id="car" class="com.hq.bean.CarFactoryBean">
 		<property name="carInfo" value="法拉利,400,2000000"></property>
 	</bean>
+	<!--<bean id = "testA" class = "com.hq.bean.TestA">
+		<constructor-arg index = "0" ref = "testB"/>
+	</bean>
+	<bean id = "testB" class = "com.hq.bean.TestB">
+		<constructor-arg index="0" ref = "testC"/>
+	</bean>
+	<bean id = "testC" class = "com.hq.bean.TestC">
+		<constructor-arg index="0" ref="testA"/>
+	</bean>-->
 </beans>

@@ -112,6 +112,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 		return getProxy(ClassUtils.getDefaultClassLoader());
 	}
 
+	//JDK动态代理，接口
 	@Override
 	public Object getProxy(@Nullable ClassLoader classLoader) {
 		if (logger.isTraceEnabled()) {
@@ -162,10 +163,12 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 		try {
 			if (!this.equalsDefined && AopUtils.isEqualsMethod(method)) {
 				// The target does not implement the equals(Object) method itself.
+				// 目标本身不实现equals(Object)方法,重写了equals方法
 				return equals(args[0]);
 			}
 			else if (!this.hashCodeDefined && AopUtils.isHashCodeMethod(method)) {
 				// The target does not implement the hashCode() method itself.
+				// 目标本身不实现hashCode()方法
 				return hashCode();
 			}
 			else if (method.getDeclaringClass() == DecoratingProxy.class) {
