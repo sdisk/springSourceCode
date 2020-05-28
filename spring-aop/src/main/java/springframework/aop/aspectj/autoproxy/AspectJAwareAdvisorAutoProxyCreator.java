@@ -27,6 +27,7 @@ import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreat
 import org.springframework.aop.interceptor.ExposeInvocationInterceptor;
 import org.springframework.core.Ordered;
 import org.springframework.util.ClassUtils;
+import springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 
 import java.util.ArrayList;
 import java.util.Comparator;

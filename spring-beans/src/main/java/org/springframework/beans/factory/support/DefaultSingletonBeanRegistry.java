@@ -59,15 +59,20 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
+	//存储单例缓存对象，bean name --> bean instance，此Map就是IOC容器，一级缓存
 	/** Cache of singleton objects: bean name to bean instance. */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
+	//用于保存beanName和创建bean的工厂的关系 bean name --> ObjectFactory， 三级缓存
 	/** Cache of singleton factories: bean name to ObjectFactory. */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
+	//用于保存beanName和创建bean实例之间的关系，与singletonFactories不同之处在于，当一个单例bean被放在这里后，
+	//那么当bean还在创建过程中，就可以通过getBean方法获取到了，此容器目的是用来检测循环引用，二级缓存
 	/** Cache of early singleton objects: bean name to bean instance. */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
+	//用来保存当前所有已注册的bean，当bean完成属性注入后，缓存到单例池中，该bean同时会被缓存到这里
 	/** Set of registered singletons, containing the bean names in registration order. */
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
@@ -163,13 +168,17 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		//先去一级缓存中获取，有就直接返回
 		Object singletonObject = this.singletonObjects.get(beanName);
+		//获取不到并且对象正在创建中，从二级缓存中获取
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
 				singletonObject = this.earlySingletonObjects.get(beanName);
 				if (singletonObject == null && allowEarlyReference) {
+					//二级缓存中也没有，通过三级缓存的getObject获取
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
+						//从三级缓存中获取到之后，从三级缓存移动到二级缓存中去
 						singletonObject = singletonFactory.getObject();
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);

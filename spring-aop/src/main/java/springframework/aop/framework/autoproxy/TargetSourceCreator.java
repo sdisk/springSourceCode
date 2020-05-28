@@ -16,7 +16,7 @@
 
 package springframework.aop.framework.autoproxy;
 
-import org.springframework.aop.TargetSource;
+import springframework.aop.TargetSource;
 import org.springframework.lang.Nullable;
 
 /**

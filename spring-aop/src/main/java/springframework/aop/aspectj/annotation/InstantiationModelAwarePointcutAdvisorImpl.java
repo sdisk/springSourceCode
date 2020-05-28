@@ -19,13 +19,13 @@ package springframework.aop.aspectj.annotation;
 import org.aopalliance.aop.Advice;
 import org.aspectj.lang.reflect.PerClauseKind;
 import org.springframework.aop.Pointcut;
-import org.springframework.aop.aspectj.AspectJExpressionPointcut;
-import org.springframework.aop.aspectj.AspectJPrecedenceInformation;
-import org.springframework.aop.aspectj.InstantiationModelAwarePointcutAdvisor;
 import org.springframework.aop.aspectj.annotation.AbstractAspectJAdvisorFactory.AspectJAnnotation;
 import org.springframework.aop.support.DynamicMethodMatcherPointcut;
 import org.springframework.aop.support.Pointcuts;
 import org.springframework.lang.Nullable;
+import springframework.aop.aspectj.AspectJExpressionPointcut;
+import springframework.aop.aspectj.AspectJPrecedenceInformation;
+import springframework.aop.aspectj.InstantiationModelAwarePointcutAdvisor;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -17,10 +17,10 @@
 package springframework.aop.aspectj.annotation;
 
 import org.aopalliance.aop.Advice;
-import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.framework.AopConfigException;
 import org.springframework.lang.Nullable;
+import springframework.aop.Advisor;
 
 import java.lang.reflect.Method;
 import java.util.List;

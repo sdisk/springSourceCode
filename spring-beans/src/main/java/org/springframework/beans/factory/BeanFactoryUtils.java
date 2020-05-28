@@ -73,6 +73,10 @@ public abstract class BeanFactoryUtils {
 	 * @param name the name of the bean
 	 * @return the transformed name
 	 * @see BeanFactory#FACTORY_BEAN_PREFIX
+	 *
+	 * 1、针对FactoryBean的处理， 如果beanName为 &A，就表示bean是实现FactoryBean接口的子类，
+	 * 	  如果beanName为 A，表示的是FactoryBean类中getObject返回的对象bean
+	 * 2、针对别名的处理，取alias所表示的最终的beanName
 	 */
 	public static String transformedBeanName(String name) {
 		Assert.notNull(name, "'name' must not be null");
